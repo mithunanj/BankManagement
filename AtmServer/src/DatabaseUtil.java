@@ -5,8 +5,8 @@ public class DatabaseUtil {
 	 static final String DB_URL = "jdbc:mysql://localhost/bank";
 
 	   //  Database credentials
-	 static final String USER = "root";
-	 static final String PASS = "Tunatuna1@";
+	 static final String USER = "user";
+	 static final String PASS = "pass";
 	 private Connection conn = null;
 	
 	
