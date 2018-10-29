@@ -65,6 +65,7 @@ public class Main extends Application {
 						String msg = server.read();
 						if(msg.equals("true")) {
 							MenuScene menu = new MenuScene(primaryStage);
+							menu.setMenuScene();
 
 							
 						}

@@ -11,7 +11,6 @@ public class AtmServer implements Runnable{
 	private PrintWriter writer;
 	private BufferedReader reader;
 	private Account account;
-	private final String continueBanking = " Would you like to continue banking? (y/n)";
 	private static DatabaseUtil data;
 	
 	
@@ -56,7 +55,7 @@ public class AtmServer implements Runnable{
 				
 			case 3: 
 				
-				writer.println("Balance: " +account.getBalance() + continueBanking);
+				writer.println("Balance: " +account.getBalance() );
 				break;
 				
 			case 4:
@@ -90,6 +89,7 @@ public class AtmServer implements Runnable{
 		}
 		
 	}
+
 	
 	public void run() {
 		
@@ -143,12 +143,14 @@ public class AtmServer implements Runnable{
 			
 				Socket socket = serverSocket.accept(); 
 				System.out.println("connected to: " + socket.getRemoteSocketAddress());
-				System.out.println("this test");
 				Thread thread = new Thread(new AtmServer(socket)); // create a thread with our Runnable type AtmServer
 				thread.start(); // start this thread and go back to waiting for a new connection
 	            
 			
-			}}
+			}
+		
+		
+		}
 			catch(IOException ioe) {
 				System.out.println(ioe.toString());
 			}

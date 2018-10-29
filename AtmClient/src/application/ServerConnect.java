@@ -14,18 +14,19 @@ public class ServerConnect{
   public void connect(){
 
     try{
-      Socket socket = new Socket("127.0.0.1",6000);
+    	
+    	
+        Socket socket = new Socket("127.0.0.1",6000);
 	    System.out.println("...");
+	    
 
 
 
 
+	    InputStreamReader input = new InputStreamReader(socket.getInputStream());
+	    reader = new BufferedReader(input);
+	    writer = new PrintWriter(socket.getOutputStream(),true);
 
-	InputStreamReader input = new InputStreamReader(socket.getInputStream());
-	 reader = new BufferedReader(input);
-   writer = new PrintWriter(socket.getOutputStream(),true);
-
-  String response;
 
 
 
@@ -34,7 +35,7 @@ public class ServerConnect{
 
     }
     catch(IOException ioe){
-	System.out.println(ioe.toString());
+    	System.out.println(ioe.toString());
 
     }
   }

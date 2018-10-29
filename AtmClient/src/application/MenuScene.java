@@ -21,6 +21,54 @@ public class MenuScene {
 		this.stage = stage; 
 		
 		
+
+		
+	}
+	
+	public void showScene(Scene scene) {
+		stage.setScene(scene);
+		
+		stage.setTitle("Account Actions");
+		stage.show();
+	}
+	
+	private Scene enterAmount() {
+		Button enter = new Button("OK");
+		TextField amountText = new TextField();
+		amountText.setMaxWidth(150);
+		Label lbl = new Label("Enter amount");
+		VBox vbox = new VBox(10);
+		vbox.getChildren().addAll(lbl, amountText, enter);
+		vbox.setAlignment(Pos.CENTER);
+		Scene scene = new Scene(vbox, 400,400);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
+
+		enter.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				System.out.println(amountText.getText());
+				Main.server.write(amountText.getText());
+				try {
+					System.out.println(Main.server.read());
+					MenuScene scene = new MenuScene(stage);
+					scene.setMenuScene();
+				}
+				catch(Exception e ) {
+					
+				}
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		return scene;
+		
+		
+	}
+	
+	public void setMenuScene() {
 		VBox vbox = new VBox();
 		Button withdraw = new Button("Withdraw");
 		Button deposit = new Button("Deposit");
@@ -34,9 +82,10 @@ public class MenuScene {
 		vbox.setSpacing(10);
 	
 		Scene scene = new Scene(vbox,400,400);
+		scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		stage.setScene(scene);
-		stage.show();
-		stage.setTitle("Account Actions");
+
+		
 		
 		withdraw.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -96,41 +145,8 @@ public class MenuScene {
 			}
 			
 		});
-		
+
 	}
 	
-	private Scene enterAmount() {
-		Button enter = new Button("OK");
-		TextField amountText = new TextField();
-		amountText.setMaxWidth(150);
-		Label lbl = new Label("Enter amount");
-		VBox vbox = new VBox(10);
-		vbox.getChildren().addAll(lbl, amountText, enter);
-		vbox.setAlignment(Pos.CENTER);
-		Scene scene = new Scene(vbox, 400,400);
-		enter.setOnAction(new EventHandler<ActionEvent>() {
-
-			@Override
-			public void handle(ActionEvent arg0) {
-				System.out.println(amountText.getText());
-				Main.server.write(amountText.getText());
-				try {
-					System.out.println(Main.server.read());
-					MenuScene sce = new MenuScene(stage);
-					
-				}
-				catch(Exception e ) {
-					
-				}
-				// TODO Auto-generated method stub
-				
-			}
-			
-		});
-		
-		return scene;
-		
-		
-	}
 
 }
