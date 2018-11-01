@@ -24,7 +24,6 @@ public abstract class Account {
 	public synchronized String deposit(double amount) {
 		
 		setBalance(getBalance() + amount);
-		System.out.println("thank you");
 		return "Balance: "+ balance; 
 		
 	}

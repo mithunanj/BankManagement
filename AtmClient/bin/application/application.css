@@ -9,3 +9,7 @@
     -fx-padding: 7;
     -fx-background-color: #FFFFFF;
 }
+
+.label {
+	-fx-font-weight: bold;
+}

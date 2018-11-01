@@ -31,7 +31,7 @@ public class Main extends Application {
 			primaryStage.show();
 			primaryStage.setTitle("ATM Login");
 			GridPane grid = new GridPane();
-			Label accNumlbl = new Label("Account Number: ");
+			Label accNumlbl = new Label("Account Number:");
 			Label pinlbl = new Label("Pin:");
 			accNum = new TextField();
 			PasswordField pin = new PasswordField();
