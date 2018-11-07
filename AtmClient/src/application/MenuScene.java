@@ -73,10 +73,13 @@ public class MenuScene {
 		Button withdraw = new Button("Withdraw");
 		Button deposit = new Button("Deposit");
 		Button checkBalance = new Button("Balance");
+		Button exit = new Button("Exit");
 		label = new Label();
 		vbox.getChildren().add(withdraw);
 		vbox.getChildren().add(deposit);
 		vbox.getChildren().add(checkBalance);
+		vbox.getChildren().add(exit);
+
 		vbox.getChildren().add(label);
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setSpacing(10);
@@ -140,6 +143,19 @@ public class MenuScene {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
+				// TODO Auto-generated method stub
+				
+			}
+			
+		});
+		
+		exit.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent arg0) {
+				Main.server.write("4");
+				new Main().start(stage);
+			
 				// TODO Auto-generated method stub
 				
 			}

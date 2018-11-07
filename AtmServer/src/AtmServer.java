@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.sql.SQLException;
  
 public class AtmServer implements Runnable{
 	
@@ -11,18 +12,20 @@ public class AtmServer implements Runnable{
 	private PrintWriter writer;
 	private BufferedReader reader;
 	private Account account;
-	private static DatabaseUtil data;
+	private  DatabaseUtil data;
 	
 	
 	public AtmServer(Socket socket) {
 		this.socket= socket;
+		data = new DatabaseUtil();
+        data.connectToData();
 		
 		
 		
 		
 	}
 	// banking options available once logged in 
-	public void startBanking() throws NumberFormatException, IOException {
+	public void startBanking() throws NumberFormatException, IOException, SQLException {
 		
 		
 	
@@ -59,6 +62,7 @@ public class AtmServer implements Runnable{
 				break;
 				
 			case 4:
+				data.saveChanges();
 				return;
 				
 			}
@@ -107,7 +111,15 @@ public class AtmServer implements Runnable{
 		        while(true) {
 		        	if(validateAccount()==true) {
 		        		writer.println("true");
-			        	startBanking();
+			        	try {
+							startBanking();
+						} catch (NumberFormatException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						} catch (SQLException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 			        	break;
 			        }
 			        else {
@@ -133,8 +145,7 @@ public class AtmServer implements Runnable{
 	}
 	
 	public static void main(String[] args) {
-		data = new DatabaseUtil();
-        data.connectToData();
+		
 		
 		try {
 			

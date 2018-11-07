@@ -5,22 +5,21 @@ public class DatabaseUtil {
 	 static final String DB_URL = "jdbc:mysql://localhost/bank";
 
 	   //  Database credentials
-	 static final String USER = "user";
-	 static final String PASS = "pass";
+	 static final String USER = "root";
+	 static final String PASS = "Tunatuna1@";
 	 private Connection conn = null;
+	 private PreparedStatement stmt;
 	
-	
-	public void connectToData() {
+	 public void connectToData() {
 		 
 		
 		
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			System.out.println("Connecting to database...");
-		      conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		    conn = DriverManager.getConnection(DB_URL,USER,PASS);
+		    conn.setAutoCommit(false);
 
-		      System.out.println("Creating statement...");
-		      
 		   
 		      
 			
@@ -32,7 +31,7 @@ public class DatabaseUtil {
 	}
 	public void addAccount(Account acc) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("insert into accounts(account_number,account_type,balance,user_id,pin) values(?,?,?,?,?)");
+			stmt = conn.prepareStatement("insert into accounts(account_number,account_type,balance,user_id,pin) values(?,?,?,?,?)");
 			stmt.setInt(1, acc.getAccNum());
 			stmt.setString(2, acc.getAccountType());
 			stmt.setDouble(3,acc.getBalance());
@@ -49,7 +48,7 @@ public class DatabaseUtil {
 	}
 	public void updateAccount(Account acc) {
 		try {
-			PreparedStatement stmt = conn.prepareStatement("update accounts set balance = ? where account_number=?");
+			stmt = conn.prepareStatement("update accounts set balance = ? where account_number=?");
 			stmt.setDouble(1, acc.getBalance());
 			stmt.setInt(2,acc.getAccNum());
 			stmt.executeUpdate();
@@ -62,7 +61,7 @@ public class DatabaseUtil {
 	public void addUser(User user  ) {
 		
 		try {
-			PreparedStatement stmt = conn.prepareStatement("insert into users(phone,name) values(?,?)");
+		    stmt = conn.prepareStatement("insert into users(phone,name) values(?,?)");
 			stmt.setLong(1, user.getPhoneNum());
 			stmt.setString(2, user.getName());
 			
@@ -78,7 +77,7 @@ public class DatabaseUtil {
 	public Account getAccount(int accNum) {
 		Account acc; 
 		try {
-			PreparedStatement stmt = conn.prepareStatement("select * from accounts where account_number=?");
+			stmt = conn.prepareStatement("select * from accounts where account_number=? for update");
 			stmt.setInt(1, accNum);
 			ResultSet rs = stmt.executeQuery();
 			
@@ -104,6 +103,15 @@ public class DatabaseUtil {
 		return acc;
 		
 		
+	}
+	
+	public void saveChanges() {
+		try {
+			conn.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 
