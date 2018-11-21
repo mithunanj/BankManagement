@@ -2,8 +2,14 @@
 public class CheckingAccount extends Account{
 
 	
-	public CheckingAccount(int accNum,int pin ) {
-		super(accNum,pin);
+	public CheckingAccount(int accNum,int pin, User owner ) {
+		super(accNum,pin,owner);
+		
+		
+		
+	}
+	public CheckingAccount(int pin, User owner ) {
+		super(pin,owner);
 		
 		
 		

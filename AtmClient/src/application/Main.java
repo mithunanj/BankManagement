@@ -29,7 +29,7 @@ public class Main extends Application {
 			scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 			primaryStage.setScene(scene);
 			primaryStage.show();
-			primaryStage.setTitle("ATM Login");
+			primaryStage.setTitle("ATM Login");   
 			GridPane grid = new GridPane();
 			Label accNumlbl = new Label("Account Number:");
 			Label pinlbl = new Label("Pin:");
@@ -63,8 +63,8 @@ public class Main extends Application {
 					server.write(text);
 					try {
 						String msg = server.read();
-						if(msg.equals("true")) {
-							MenuScene menu = new MenuScene(primaryStage);
+						if(!msg.equals("Wrong pin")) {
+							MenuScene menu = new MenuScene(primaryStage,msg);
 							menu.setMenuScene();
 
 							

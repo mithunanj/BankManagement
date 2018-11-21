@@ -10,13 +10,20 @@ public abstract class Account {
 	private User owner;
 	
 	
-	public Account(int accNum,int pin) {
+	public Account(int accNum,int pin, User owner) {
 		balance =0;
 		this.pin = pin;
 		this.accNum=accNum;
+		this.owner= owner;
 			
 	}
-	
+	public Account(int pin, User owner) {
+		balance =0;
+		this.pin = pin;
+		this.accNum=0;
+		this.owner= owner;
+			
+	}
 	public abstract boolean withdraw(int amount);
 	
 	public abstract String getAccountType();
@@ -27,9 +34,7 @@ public abstract class Account {
 		return "Balance: "+ balance; 
 		
 	}
-	public void setOwner(User user) {
-		owner = user;
-	}
+	
 	public  User getOwner() {
 		return owner;
 	}

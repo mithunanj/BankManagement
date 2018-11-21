@@ -3,8 +3,11 @@ public class SavingsAccount extends Account implements Interest{
 	
 	private static int withdrawLimit = 1000;
 	
-	public SavingsAccount(int accNum,int pin  ) {
-		super(accNum,pin); 
+	public SavingsAccount(int accNum,int pin, User owner  ) {
+		super(accNum,pin, owner); 
+	}
+	public SavingsAccount(int pin, User owner  ) {
+		super(pin, owner); 
 	}
 
 	

@@ -12,13 +12,12 @@ public class AtmServer implements Runnable{
 	private PrintWriter writer;
 	private BufferedReader reader;
 	private Account account;
-	private  DatabaseUtil data;
+	private  BankDatabase data;
 	
 	
 	public AtmServer(Socket socket) {
 		this.socket= socket;
-		data = new DatabaseUtil();
-        data.connectToData();
+		data = new BankDatabase();
 		
 		
 		
@@ -110,7 +109,7 @@ public class AtmServer implements Runnable{
 		        
 		        while(true) {
 		        	if(validateAccount()==true) {
-		        		writer.println("true");
+		        		writer.println("Welcome to Useful Bank " + account.getOwner().getName());
 			        	try {
 							startBanking();
 						} catch (NumberFormatException e) {
@@ -146,10 +145,26 @@ public class AtmServer implements Runnable{
 	
 	public static void main(String[] args) {
 		
+		ServerSocket serverSocket;
+		
+		BankDatabase dbu = new BankDatabase();
+		User sara = new User("sara",1234167599l);
+		Account accS = new SavingsAccount(1111,sara);
+		User john = new User("john",3214167599l);
+		Account accJ = new SavingsAccount(2222,john);
+		User mark = new User("mark",4564167599l);
+		Account accM = new SavingsAccount(3333,mark);
+		dbu.createUserTable();
+		dbu.createAccountTable();
+		
 		
 		try {
-			
-			ServerSocket serverSocket = new ServerSocket(6000);
+
+			dbu.addAccountAndUser(accS);
+			dbu.addAccountAndUser(accJ);
+			dbu.addAccountAndUser(accM);
+			dbu.saveChanges();
+			serverSocket = new ServerSocket(6000);
 		while(true) {
 			
 				Socket socket = serverSocket.accept(); 
@@ -162,7 +177,7 @@ public class AtmServer implements Runnable{
 		
 		
 		}
-			catch(IOException ioe) {
+			catch(Exception ioe) {
 				System.out.println(ioe.toString());
 			}
 		

@@ -14,11 +14,13 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class MenuScene {
-	private Label label;
+	private Label label = new Label();
 	Stage stage; 
+	private String msg;
 	
-	public MenuScene(Stage stage) {
+	public MenuScene(Stage stage, String msg) {
 		this.stage = stage; 
+		this.msg = msg;
 		
 		
 
@@ -33,6 +35,7 @@ public class MenuScene {
 	}
 	
 	private Scene enterAmount() {
+		
 		Button enter = new Button("OK");
 		TextField amountText = new TextField();
 		amountText.setMaxWidth(150);
@@ -50,9 +53,8 @@ public class MenuScene {
 				System.out.println(amountText.getText());
 				Main.server.write(amountText.getText());
 				try {
-					System.out.println(Main.server.read());
-					MenuScene scene = new MenuScene(stage);
-					scene.setMenuScene();
+					label.setText(Main.server.read());
+					setMenuScene();
 				}
 				catch(Exception e ) {
 					
@@ -70,11 +72,12 @@ public class MenuScene {
 	
 	public void setMenuScene() {
 		VBox vbox = new VBox();
+		Label lbl = new Label(msg);
 		Button withdraw = new Button("Withdraw");
 		Button deposit = new Button("Deposit");
 		Button checkBalance = new Button("Balance");
 		Button exit = new Button("Exit");
-		label = new Label();
+		vbox.getChildren().add(lbl);
 		vbox.getChildren().add(withdraw);
 		vbox.getChildren().add(deposit);
 		vbox.getChildren().add(checkBalance);

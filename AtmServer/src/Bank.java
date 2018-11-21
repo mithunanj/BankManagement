@@ -13,30 +13,30 @@ public class Bank {
 	
 	
 	
-	public Account createSavings() {
+	public Account createSavings(User owner) {
 		accNum += 1;
 		int pin = (int) (Math.random()*9000)+1000;
 		System.out.println("your pin is: "+ pin);
-		Account acc = new SavingsAccount(accNum, pin);
+		Account acc = new SavingsAccount(accNum, pin,owner);
 		return acc;
 		
 	}
 	
 	//overloading method, different method signature 
-	public Account createSavings(int pin ) {
+	public Account createSavings(int pin, User owner ) {
 		accNum+=1;
-		Account acc = new SavingsAccount(accNum, pin);
+		Account acc = new SavingsAccount(accNum, pin,owner);
 		
 		return acc;
 		
 		
 	}
 	
-	public Account createChecking(int pin ) {
+	public Account createChecking(int pin, User owner ) {
 		
 		accNum+=1;
 		
-		Account acc = new CheckingAccount(accNum, pin);
+		Account acc = new CheckingAccount(accNum, pin,owner);
 		
 		return acc;
 	}
