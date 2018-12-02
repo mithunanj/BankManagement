@@ -10,6 +10,6 @@ Running the client program connects to the server and when you attemt a login, t
 
 ## Client Images
 
-<img src ="images/login.png" width = "450"> <img src = "images/menu.png" width = "450">
+<img src ="images/login.png" width = "420"> <img src = "images/menu.png" width = "420">
 
 
