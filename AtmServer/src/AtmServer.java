@@ -165,7 +165,8 @@ public class AtmServer implements Runnable{
 			dbu.addAccountAndUser(accM);
 			dbu.saveChanges();
 			serverSocket = new ServerSocket(6000);
-		while(true) {
+			while(true) {
+			
 			
 				Socket socket = serverSocket.accept(); 
 				System.out.println("connected to: " + socket.getRemoteSocketAddress());
@@ -177,8 +178,9 @@ public class AtmServer implements Runnable{
 		
 		
 		}
-			catch(Exception ioe) {
-				System.out.println(ioe.toString());
+		catch(Exception ioe) {
+			
+			System.out.println(ioe.toString());
 			}
 		
 		}

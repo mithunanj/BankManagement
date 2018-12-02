@@ -37,6 +37,7 @@ public class Bank {
 		accNum+=1;
 		
 		Account acc = new CheckingAccount(accNum, pin,owner);
+		accounts.put(acc.getAccNum(), acc);
 		
 		return acc;
 	}

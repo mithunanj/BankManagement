@@ -1,13 +1,12 @@
-import java.sql.Connection;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 
-public class DatabaseCP {
+public class BankDataSource {
 
 	private static BasicDataSource dataSource;
 	static final String DB_URL = "jdbc:mysql://localhost/bank";
-	static final String USER = "user";
-	static final String PASS = "pass";
+	static final String USER = "root";
+	static final String PASS = "Tunatuna1@";
 	
 	public static synchronized BasicDataSource getDataSource() {
 		

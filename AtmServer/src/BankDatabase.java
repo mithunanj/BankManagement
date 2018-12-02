@@ -9,7 +9,7 @@ public class BankDatabase {
 	  public BankDatabase() {
 		
 		try {
-			conn = DatabaseCP.getDataSource().getConnection();
+			conn = BankDataSource.getDataSource().getConnection();
 			
 			conn.setAutoCommit(false);
 			
