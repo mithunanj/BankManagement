@@ -5,8 +5,8 @@ public class BankDataSource {
 
 	private static BasicDataSource dataSource;
 	static final String DB_URL = "jdbc:mysql://localhost/bank";
-	static final String USER = "root";
-	static final String PASS = "Tunatuna1@";
+	static final String USER = "user";
+	static final String PASS = "pass";
 	
 	public static synchronized BasicDataSource getDataSource() {
 		
