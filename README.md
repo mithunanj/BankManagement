@@ -8,3 +8,8 @@ When you run the Server application the main method creates the database tables 
 
 Running the client program connects to the server and when you attemt a login, the server checks the credentials agains the database and if correct allows you to perform banking actions. When you exit updates are saved to database
 
+## Client Images
+
+<img src ="images/login.png"> <img src = "images/menu.png">
+
+
